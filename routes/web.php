@@ -1,12 +1,19 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
+
+use function Laravel\Prompts\title;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/student', function () {
-    return view('student.index');
-});
+
+Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+
+Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
+
+Route::post('/student/store', [StudentController::class, 'store'])->name('student.store');
+
 
